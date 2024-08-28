@@ -25,6 +25,8 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#include <roothide.h>
+
 #include <Availability.h>
 
 #include <sys/fcntl.h>
@@ -245,7 +247,12 @@ launchctl_parse_load_unload(unsigned int domain, int count, char **list)
 			getcwd(pathbuf, sizeof(pathbuf));
 			asprintf(&finalpath, "%s/%s", pathbuf, list[i]);
 		}
-		xpc_array_set_string(ret, XPC_ARRAY_APPEND, finalpath);
+		
+		void patch_plist(char* path);
+		patch_plist(finalpath);
+		
+		xpc_array_set_string(ret, XPC_ARRAY_APPEND, jbroot(finalpath));
+		
 		free(finalpath);
 	}
 

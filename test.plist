@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>launchctl_test</string>
+
+	<key>Program</key>
+	<string>/test_bin</string>
+	
+	<key>ProgramArguments</key>
+	<array>
+		<string>/test_bin</string>
+		<string>testarg</string>
+	</array>
+
+	<key>RootDirectory</key>
+	<string>/test_root</string>
+
+	<key>WorkingDirectory</key>
+	<string>/test_work</string>
+
+	<key>StandardInPath</key>
+	<string>/test_stdin</string>
+
+	<key>StandardOutPath</key>
+	<string>/test_stdout</string>
+
+	<key>StandardErrorPath</key>
+	<string>/test_stderr</string>
+
+	<key>WatchPaths</key>
+	<array>
+		<string>/test_watch1</string>
+		<string>/test_watch2</string>
+		<string>/rootfs/test_watch1</string>
+		<string>/rootfs/test_watch2</string>
+	</array>
+
+	<key>QueueDirectories</key>
+	<array>
+		<string>/test_watch1</string>
+		<string>/test_watch2</string>
+		<string>/rootfs/test_watch1</string>
+		<string>/rootfs/test_watch2</string>
+	</array>
+
+	<key>KeepAlive</key>
+	<dict>
+		<key>PathState</key>
+		<dict>
+				<key>/test_keepalive1</key>
+				<true/>
+				<key>/test_keepalive2</key>
+				<true/>
+				<key>/rootfs/test_keepalive1</key>
+				<true/>
+				<key>/rootfs/test_keepalive2</key>
+				<true/>
+		</dict>
+	</dict>
+	
+	<key>EnvironmentVariables</key>
+	<dict>
+			<key>CFFIXED_USER_HOME</key>
+			<string>/test/CFFIXED_USER_HOME</string>
+			<key>HOME</key>
+			<string>/test/HOME</string>
+			<key>TMPDIR</key>
+			<string>/test/TMPDIR</string>
+	</dict>
+
+	<key>Sockets</key>
+	<dict>
+		<key>test_listener1</key>
+		<dict>
+			<key>SockFamily</key>
+			<string>Unix</string>
+			<key>SockPathMode</key>
+			<integer>511</integer>
+			<key>SockPathName</key>
+			<string>/test_sock1</string>
+		</dict>
+		<key>test_listener2</key>
+		<dict>
+			<key>SockFamily</key>
+			<string>Unix</string>
+			<key>SockPathMode</key>
+			<integer>511</integer>
+			<key>SockPathName</key>
+			<string>/test_sock2</string>
+		</dict>
+		<key>test_listener3</key>
+		<dict>
+			<key>SockFamily</key>
+			<string>Unix</string>
+			<key>SockPathMode</key>
+			<integer>511</integer>
+			<key>SockPathName</key>
+			<string>/rootfs/test_sock3</string>
+		</dict>
+		<key>test_listener4</key>
+		<dict>
+			<key>SockFamily</key>
+			<string>Unix</string>
+			<key>SockPathMode</key>
+			<integer>511</integer>
+			<key>SockPathName</key>
+			<string>/rootfs/test_sock4</string>
+		</dict>
+	</dict>
+
+	<key>LaunchEvents</key>
+	<dict>
+		<key>com.apple.fsevents.matching</key>
+		<dict>
+			<key>ConfigFileChanged</key>
+			<dict>
+				<key>Path</key>
+				<string>/test_file_path1</string>
+			</dict>
+			<key>ControlSettingsChanged</key>
+			<dict>
+				<key>Path</key>
+				<string>/test_file_path2</string>
+			</dict>
+			<key>NetworkdSettingsChanged</key>
+			<dict>
+				<key>Path</key>
+				<string>/rootfs/test_file_path3</string>
+			</dict>
+			<key>NetworkdSysctlSettingsChanged</key>
+			<dict>
+				<key>Path</key>
+				<string>/rootfs/test_file_path4</string>
+			</dict>
+		</dict>
+	</dict>
+
+</dict>
+</plist>

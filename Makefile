@@ -15,12 +15,15 @@ endif
 
 all: launchctl
 
+%.o: %.m
+	$(CC) $(CFLAGS) -c $< -o $@
+
 launchctl: $(SRC:.c=.o) $(SRC:.m=.o) Info.plist launchctl.xml
 	$(CC) $(CFLAGS) $(LDFLAGS) $(filter %.o,$^) $(LOADLIBES) $(LDLIBS) -o $@ -Wl,-sectcreate,__TEXT,__info_plist,Info.plist
 	ldid -Icom.apple.xpc.launchctl -Slaunchctl.xml -Cadhoc launchctl
 
 clean:
-	rm -rf launchctl launchctl.dSYM $(SRC:%.c=%.o)
+	rm -rf launchctl launchctl.dSYM *.o
 
 install: launchctl
 	install -d $(DESTDIR)$(PREFIX)/bin/

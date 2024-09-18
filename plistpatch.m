@@ -77,9 +77,12 @@ NSObject* xpc_convert_to_nsobj(xpc_object_t in)
 
         return nsdict;
 	}
+
+	assert(in == NULL);
+	return nil;
 }
 
-void xpc_save_to_file(xpc_object_t object, char* path)
+void xpc_save_to_file(xpc_object_t object, const char* path)
 {
     printf("xpc_save_to_file to %s\n", path);
     NSObject* nsobj = xpc_convert_to_nsobj(object);
@@ -93,10 +96,11 @@ void xpc_save_to_file(xpc_object_t object, char* path)
 	}
 }
 
-
+#ifndef __GNUC__
 #define __GNUC__
+#endif
 #include <assert.h>
-void patch_plist_file(char* path)
+void patch_plist_file(const char* path)
 {
 	if(strncmp(path, "/rootfs/", sizeof("/rootfs/")-1)==0) {
 		printf("daemon in rootfs: %s\n", path);
